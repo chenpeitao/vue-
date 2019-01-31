@@ -2,11 +2,36 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/home'
-import Layout from '@/views/layout'
-import Project from '@/views/backend/project'
-import Workbench from '@/views/backend/workbench'
-import Doc from '@/views/backend/doc.vue'
+// import Layout from '@/views/layout'
+// import Project from '@/views/backend/project'
+// import Workbench from '@/views/backend/workbench'
+// import Doc from '@/views/backend/doc.vue'
 import Login from '@/components/login'
+
+//webpack 实现懒加载
+let Layout=(resolve)=>{
+  return require.ensure([],()=>{
+    resolve(require('@/views/layout'))
+  })
+}
+
+let Project=(resolve)=>{
+  return require.ensure([],()=>{
+    resolve(require('@/views/backend/project'))
+  })
+}
+
+let Workbench=(resolve)=>{
+  return require.ensure([],()=>{
+    resolve(require('@/views/backend/workbench'))
+  })
+}
+
+let Doc=(resolve)=>{
+  return require.ensure([],()=>{
+    resolve(require('@/views/backend/doc'))
+  })
+}
 
 Vue.use(Router)
 
